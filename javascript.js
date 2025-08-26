@@ -43,3 +43,15 @@ function operate(a , b ,operator){
     }
 
 }
+
+//display result 
+ const display = document.querySelector(".display")
+ const button = document.querySelectorAll(".button") ;
+ button.forEach(
+    addEventListener("click",(event)=>{
+        let content = event.target.textContent ;
+    display.textContent = content
+    console.log(event)
+ }
+)
+)
