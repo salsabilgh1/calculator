@@ -21,3 +21,25 @@ function divide(a,b){
 
 let a , b ,operator;
 
+//operate
+function operate(a , b ,operator){
+    if(operator==="+"){
+        return add(a,b);
+    }
+    else{
+        if(operator==="-"){
+            return subtruct(a,b) ;
+        }
+        else{
+            if(operator==="*"){
+                return multiply(a,b) ;
+            }
+            else{
+                if(operator==="/"){
+                    return divide(a,b);
+                }
+            }
+        }
+    }
+
+}
