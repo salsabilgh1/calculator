@@ -18,8 +18,11 @@ function divide(a,b){
         return a / b ;
     }
 }
-
-let a , b ,operator;
+console.log(operate(6,2,"*"))
+let a=""
+let b=""
+let operator 
+let result;
 
 //operate
 function operate(a , b ,operator){
@@ -36,7 +39,7 @@ function operate(a , b ,operator){
             }
             else{
                 if(operator==="/"){
-                    return divide(a,b);
+                   return Math.round(divide(a, b) * 1000) / 1000;
                 }
             }
         }
@@ -46,46 +49,75 @@ function operate(a , b ,operator){
 
 //display result 
 let number=[]
+let content=""
  const display = document.querySelector(".display")
  const button = document.querySelectorAll(".button") ;
  button.forEach(elem=>{
     elem.addEventListener("click",(event)=>{
-        let content = event.target.textContent ;
-    display.textContent = content
-    console.log(event)
-    number.push(content)
- }
-)
+        let cur =event.target.textContent
+        if(cur==="+" || cur ==="-" || cur ==="*" || cur==="/" ){
+            if(a!==""){
+                if(b===""){
+                  if(operator===undefined){
+                   operator = cur ;
+                   content +=cur ;
+                   display.textContent =content;
+                  }
+                  }else{
+                    if(operator !== undefined){
+                    a = Number(a) ;
+                    b = Number(b) ;
+                    result =operate(a,b,operator);
+                    a = result ;
+                    content =result +" "+ cur ;
+                    display.textContent =content ;
+                    b ="" ;
+                    operator = cur ;
+                    }
+                  }
+                
+            }
+
+        }else{
+            if(cur==="="){
+                if(a!=="" && b!=="" && operator!==undefined){
+                    a = Number(a) ;
+                    b = Number(b) ;
+                    result = operate(a,b,operator);
+                    content = result ;
+                    display.textContent =content ;
+                    a = "";
+                    b = "";
+                    operator = undefined ;
+                    content=""
+                }
+
+            }else{
+                if(cur==="clear"){
+                  content=""
+                  display.textContent=content ;
+                  a="";
+                  b="";
+                  operator=undefined
+                }else{
+                    content+=cur;
+                    display.textContent=content
+                    if(operator===undefined){
+                        a +=cur;
+                    }else{
+                        b+=cur;
+                    }
+                }
+            }
+        }
+
+       
 }
+ )
+ }    
 )
-console.log(number)
 
-//how the calculator work
-// for(let i = 0 ;i<3 ;i++){
-//     if(i===1){
-//     button.addEventListener("click", event=>{
-//     a=Number(event.target.textContent);
-// })
-// }
-// else{
-//     if(i===2){
-//         button.addEventListener("click", event=>{
-//     b=Number(event.target.textContent);
-//     })
-//     }
-//     else{
-//         button.addEventListener("click", event=>{
-//     operator=event.target.textContent;
-//     })
-//     }
 
-// }
-// }
-// button.addEventListener("click" , event =>{
-//     let con = event.target.textContent;
-// })
-// if(con==="="){
-//     let result=operate(a,b,operator);
-// }
-// display.textContent=result;
-// console.log(a)
+
+
+
